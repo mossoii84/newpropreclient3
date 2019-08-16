@@ -1,0 +1,18 @@
+
+<div *ngFor="let projectList of serviceProject.projects">
+  <ul><li>
+    {{projectList.id}}
+    {{projectList.name}}
+    {{projectList.theme}}
+    <button (click)="delete(projectList.id)">Удалить</button>
+    <button (click)="setValueProject(projectList)">Редактировать</button>
+  </li></ul>
+</div>
+
+<form [formGroup]="FormPostProject">
+  <input type="hidden" name="id" id="id" formControlName="id">
+  <input type="text" name="name" id="name" formControlName="name">
+  <input type="text" name="theme" id="theme" formControlName="theme">
+  <button (click)="CreatNewProject(FormPostProject.value)">Создать Проект</button>
+
+</form>

@@ -1,0 +1,83 @@
+<table mat-table  [dataSource]="dataSource"   class="mat-elevation-z8" class="tablica">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+ <ng-container matColumnDef="name">
+  <th mat-header-cell *matHeaderCellDef> Name </th>
+  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+ </ng-container>
+    <ng-container matColumnDef="age">
+      <th mat-header-cell *matHeaderCellDef> age </th>
+      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+    </ng-container>
+
+  <ng-container matColumnDef="projectId"  >
+    <th mat-header-cell *matHeaderCellDef> projectId </th>
+    <td mat-cell *matCellDef="let element" >
+        <mat-cell *ngFor="let project of element.projects">
+          {{project.id}}
+        </mat-cell>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="projectName"  >
+    <th mat-header-cell *matHeaderCellDef> projectName </th>
+    <td mat-cell *matCellDef="let element" >
+      <div *ngFor="let project of element.projects">
+        {{project.name}}
+      </div>
+    </td>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="delete" >
+  <th mat-header-cell *matHeaderCellDef> delete </th>
+    <td mat-cell *matCellDef="let employee">
+    <button mat-icon-button  (click)="deleteEmployerById(employee.id)">Delete</button>
+  </td>
+</ng-container>
+
+  <ng-container matColumnDef="edit" >
+    <th mat-header-cell *matHeaderCellDef> edit </th>
+    <td mat-cell *matCellDef="let employee">
+      <button mat-icon-button  (click)="setValueEmployee(employee)">Edit</button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form [formGroup]="FormPostEmployee">
+  <input type="hidden" name="id" formControlName="id" >
+  <input type="text" name="name" formControlName="name">
+  <input type="number" name="age" formControlName="age">
+
+  <!--[multiple]="true" - чтобы могли выбрать много вариантов-->
+  <select formControlName="projects" [multiple]="true">
+
+    <!--[value]="project"-при выборе эл в выпадающем списке, передается значение Value, типо input, но в инпут мы можем сами вписать-->
+    <option *ngFor="let project of dataProject" [value]="project">{{project.name}}</option>
+  </select>
+
+  <button (click)="clickCreatPost(FormPostEmployee.value)">Добавить Рабочего</button>
+</form>

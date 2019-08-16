@@ -1,0 +1,16 @@
+table {
+  width: 100%;
+}
+.mat-icon-button{
+  background-color: aqua;
+}
+
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 50%;
+}
